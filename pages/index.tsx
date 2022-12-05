@@ -4,13 +4,13 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { AiOutlineSend } from "react-icons/ai";
 import api from "../config/configApi";
 function App() {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<any>();
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
   });
-  const [data] = useState([]);
-  const [passaImagem, setPassaImagem] = useState();
+  const [data, setData] = useState([]);
+  const [passaImagem, setPassaImagem] = useState<any>();
 
   const uploadImage = async (e: any) => {
     e.preventDefault();
@@ -121,8 +121,8 @@ function App() {
                   type="file"
                   id="image"
                   name="image"
-                  onChange={(e) => (
-                    setImage(e.target.files[0]),
+                  onChange={(e: any) => (
+                    setImage(e?.target?.files[0]),
                     setPassaImagem(e.target.files[0])
                   )}
                 />
@@ -135,7 +135,7 @@ function App() {
                     ? `bg-gray-500 p-1  absolute bottom-1 right-1 sm:rounded-md rounded-full`
                     : `bg-[#1b5e20] hover:bg-[#0a310d] dark:bg-gray-500 p-1 sm:rounded-md rounded-full absolute bottom-1 right-1`
                 }
-                onClick={() => data.push(passaImagem)}
+                onClick={() => setData([].concat(data, passaImagem))}
               >
                 <h1 className="text-white hidden cellphone:block">
                   Enviar Imagem
